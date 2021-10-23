@@ -20,7 +20,7 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 router.post("/:id", async (req, res) => {
   try {
     const sensorData = req.body.SensorData;
-    const inst = await firebaseApp.firestore().collection('instances').doc(req.params.id).update({
+    const inst = await firebaseApp.firestore().collection('instances').doc(''+req.params.id).update({
       sensor_data_array: firebaseApp.firestore.FieldValue.arrayUnion(sensorData),
       sensor_data: sensorData,
       last_updated: new Date()
@@ -35,7 +35,7 @@ router.post("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const sensorData = req.body.SensorData;
-    const inst = await firebaseApp.firestore().collection('instances').doc(req.params.id).update({
+    const inst = await firebaseApp.firestore().collection('instances').doc(''+req.params.id).update({
       sensor_data_array: firebaseApp.firestore.FieldValue.arrayUnion(sensorData),
       sensor_data: sensorData,
       last_updated: new Date()
@@ -49,7 +49,7 @@ router.put("/:id", async (req, res) => {
 //DELETE INSTANCE
 router.delete("/:id", async (req, res) => {
   try {
-    const inst = await firebaseApp.firestore().collection('instances').doc(req.params.id).delete();
+    const inst = await firebaseApp.firestore().collection('instances').doc(''+req.params.id).delete();
 
   } catch (err) {
     res.status(500).json(err);
@@ -59,7 +59,7 @@ router.delete("/:id", async (req, res) => {
 //GET INSTANCE
 router.get("/:id", async (req, res) => {
   try {
-    const inst = await firebaseApp.firestore().collection('instances').doc(req.params.id).get();
+    const inst = await firebaseApp.firestore().collection('instances').doc(''+req.params.id).get();
     
     res.status(200).json(inst.data());
   } catch (err) {
@@ -70,7 +70,7 @@ router.get("/:id", async (req, res) => {
 //GET LAST SENSOR DATA
 router.get("/:id/sensordata", async (req, res) => {
   try {
-    const inst = await firebaseApp.firestore().collection('instances').doc(req.params.id).get();
+    const inst = await firebaseApp.firestore().collection('instances').doc(''+req.params.id).get();
     const sensor_data = inst.data().sensor_data;
     res.status(200).json(sensor_data);
   } catch (err) {
@@ -81,7 +81,7 @@ router.get("/:id/sensordata", async (req, res) => {
 //GET SENSOR DATA ARRAY
 router.get("/:id/pastsensordata", async (req, res) => {
   try {
-    const inst = await firebaseApp.firestore().collection('instances').doc(req.params.id).get();
+    const inst = await firebaseApp.firestore().collection('instances').doc(''+req.params.id).get();
     const sensor_data_arr = [];
     sensor_data_arr = [...inst.data().sensor_data_array];
     res.status(200).json(sensor_data_arr);
