@@ -1,5 +1,6 @@
 const router = require("express").Router();
-import { initializeApp } from "firebase/app";
+const firebase = require('firebase/app');
+const initializeApp = require("firebase/app");
 const Instance = require("../models/Instance");
 const SensorData = require("../models/SensorData");
 const firebaseConfig = {
@@ -13,7 +14,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 //INSERT SENSOR DATA (UPDATE NEW)
 router.post("/:id", async (req, res) => {

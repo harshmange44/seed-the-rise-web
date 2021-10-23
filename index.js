@@ -6,8 +6,9 @@ const bodyParser = require("body-parser");
 const path = require("path");
 // const { initializeApp } = require('firebase-admin/app');
 // import * as admin from "firebase-admin";
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+const firebase = require('firebase/app');
+const initializeApp = require("firebase/app");
+const getAnalytics = require("firebase/analytics");
 
 dotenv.config();
 app.use(express.json());
@@ -27,8 +28,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
-const analytics = getAnalytics(firebaseApp);
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+// const analytics = firebase.getAnalytics(firebaseApp);
 
 // admin.initializeApp({
 //   credential: admin.credential.cert({
