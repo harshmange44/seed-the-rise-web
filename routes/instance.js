@@ -35,7 +35,7 @@ router.post("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const sensorData = req.body.SensorData;
-    const inst = await firebaseApp.firestore().collection('instances').doc(''+req.params.id).update({
+    const inst = await firebaseApp.firestore().collection('instances').doc('instance1').update({
       sensor_data_array: firebaseApp.firestore.FieldValue.arrayUnion(sensorData),
       sensor_data: sensorData,
       last_updated: new Date()
