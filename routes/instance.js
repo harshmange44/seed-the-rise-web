@@ -61,9 +61,9 @@ router.put("/:id", async (req, res) => {
         const soil = req.body.soil;
         const ldr = req.body.ldr;
         const temperature_humidity = req.body.temperature_humidity;
+        const inst = await Instance.find({name: req.params.id});
 
-        const updatedInst = await Instance.findByIdAndUpdate(
-          req.params.id,
+        const updatedInst = await inst.update(
           {
             $set: {
               last_updated: new Date(),
@@ -96,7 +96,7 @@ router.put("/:id", async (req, res) => {
 //DELETE INSTANCE
 router.delete("/:id", async (req, res) => {
   try {
-    const inst = await Instance.findById(req.params.id);
+    const inst = await Instance.find({name: req.params.id});
     await inst.delete();
     res.status(200).json("Instance has been deleted...");
   } catch (err) {
@@ -107,7 +107,7 @@ router.delete("/:id", async (req, res) => {
 //GET INSTANCE
 router.get("/:id", async (req, res) => {
   try {    
-    const inst = await Instance.findById(req.params.id);
+    const inst = await Instance.find({name: req.params.id});
     res.status(200).json(inst);
   } catch (err) {
     res.status(500).json(err);
@@ -117,7 +117,7 @@ router.get("/:id", async (req, res) => {
 //GET LAST SENSOR DATA
 router.get("/:id/sensordata", async (req, res) => {
   try {
-    const inst = await Instance.findById(req.params.id);
+    const inst = await Instance.find({name: req.params.id});
     const sensor_data = inst.sensor_data;
     res.status(200).json(sensor_data);
   } catch (err) {
@@ -128,7 +128,7 @@ router.get("/:id/sensordata", async (req, res) => {
 //GET SENSOR DATA ARRAY
 router.get("/:id/pastsensordata", async (req, res) => {
   try {
-    const inst = await Instance.findById(req.params.id);
+    const inst = await Instance.find({name: req.params.id});
     const sensor_data_arr = [];
     sensor_data_arr = [...inst.sensor_data_array];
     res.status(200).json(sensor_data_arr);

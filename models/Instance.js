@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const InstanceSchema = new mongoose.Schema(
   {
+    name: {
+      type: String,
+      unique: true
+    },
     last_updated: {
       type: Date  
     },
