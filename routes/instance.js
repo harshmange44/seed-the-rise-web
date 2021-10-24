@@ -118,7 +118,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //GET LAST SENSOR DATA
-router.get("/:id/sensordata", async (req, res) => {
+router.get("/sensordata/:id", async (req, res) => {
   try {
     const inst = await Instance.find({name: req.params.id});
     const sensor_data = inst.get('sensor_data');
@@ -129,7 +129,7 @@ router.get("/:id/sensordata", async (req, res) => {
 });
 
 //GET SENSOR DATA ARRAY
-router.get("/:id/pastsensordata", async (req, res) => {
+router.get("/pastsensordata/:id/", async (req, res) => {
   try {
     const inst = await Instance.find({name: req.params.id});
     const sensor_data_arr = [];
