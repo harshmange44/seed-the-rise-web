@@ -36,15 +36,18 @@ router.post("/:id", async (req, res) => {
   const ldr = req.body.ldr;
   const temperature_humidity = req.body.temperature_humidity;
   
+  const retrievedSensorData = {
+    air: air,
+    soil: soil,
+    ldr: ldr,
+    temperature_humidity: temperature_humidity
+  };
+
   const newInst = new Instance({
       last_updated: new Date(),
-      sensor_data: {
-      air: air,
-      soil: soil,
-      ldr: ldr,
-      temperature_humidity: temperature_humidity
-    },
-    sensor_data_array: []
+      name: req.params.id,
+      sensor_data: retrievedSensorData,
+      sensor_data_array: [retrievedSensorData]
   });
   try {
     const savedInst = await newInst.save();
