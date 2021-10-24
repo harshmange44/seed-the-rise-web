@@ -121,7 +121,7 @@ router.get("/:id", async (req, res) => {
 router.get("/:id/sensordata", async (req, res) => {
   try {
     const inst = await Instance.find({name: req.params.id});
-    const sensor_data = inst.sensor_data;
+    const sensor_data = inst.get('sensor_data');
     res.status(200).json(sensor_data);
   } catch (err) {
     res.status(500).json(err);
@@ -133,7 +133,7 @@ router.get("/:id/pastsensordata", async (req, res) => {
   try {
     const inst = await Instance.find({name: req.params.id});
     const sensor_data_arr = [];
-    sensor_data_arr = [...inst.sensor_data_array];
+    sensor_data_arr = [...inst.get('sensor_data_array')];
     res.status(200).json(sensor_data_arr);
   } catch (err) {
     res.status(500).json(err);
