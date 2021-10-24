@@ -120,11 +120,8 @@ router.get("/:id", async (req, res) => {
 //GET LAST SENSOR DATA
 router.get("/sensordata/:id", async (req, res) => {
   try {
-    const sensor_data = await Instance.find({name: req.params.id}, {sensor_data: 1});
-    // const sensor_data = inst.sensor_data;
+    const sensor_data = await Instance.findOne({name: req.params.id}, {sensor_data: 1});
     res.status(200).json(sensor_data);
-    // console.log("DEBUG: "+inst);
-    // console.log("DEBUG: "+inst['sensor_data']);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -133,10 +130,8 @@ router.get("/sensordata/:id", async (req, res) => {
 //GET SENSOR DATA ARRAY
 router.get("/pastsensordata/:id/", async (req, res) => {
   try {
-    const inst = await Instance.find({name: req.params.id});
-    const sensor_data_arr = [];
-    sensor_data_arr = [...inst.sensor_data_array];
-    res.status(200).json(inst['sensor_data_array']);
+    const sensor_data_array = await Instance.findOne({name: req.params.id}, {sensor_data_array: 1});
+    res.status(200).json(sensor_data_array);
   } catch (err) {
     res.status(500).json(err);
   }
