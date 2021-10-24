@@ -1,5 +1,7 @@
-const SensorDataModel = {
+const mongoose = require("mongoose");
 
+const SensorDataSchema = new mongoose.Schema(
+  {
   air: {
     type: Number,
   },
@@ -12,6 +14,8 @@ const SensorDataModel = {
   temperature_humidity: {
     type: Number,
   }
-};
+},
+{ timestamps: true }
+);
 
-module.exports = SensorDataModel;
+module.exports = mongoose.model("SensorData", SensorDataSchema);
