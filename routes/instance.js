@@ -51,16 +51,8 @@ router.put("/:id", async (req, res) => {
                 ldr: ldr,
                 temperature_humidity: temperature_humidity
               }
-            },
-              $push: {
-                sensor_data_array: {
-                  air: air,
-                  soil: soil,
-                  ldr: ldr,
-                  temperature_humidity: temperature_humidity
-                }
-              }
-          },
+            }
+          }
           { new: true }
         );
         res.status(200).json(updatedInst);
