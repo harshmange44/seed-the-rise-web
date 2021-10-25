@@ -121,12 +121,7 @@ router.get("/:id", async (req, res) => {
 router.get("/sensordata/:id", async (req, res) => {
   try {
     const sensor_data = await Instance.findOne({name: req.params.id}, {sensor_data: 1});
-    res.status(200).json({
-      air: sensor_data.air,
-      soil: sensor_data.soil,
-      ldr: sensor_data.ldr,
-      temperature_humidity: sensor_data.temperature_humidity
-    });
+    res.status(200).json(sensor_data);
   } catch (err) {
     res.status(500).json(err);
   }
