@@ -52,7 +52,7 @@ router.put("/:id", async (req, res) => {
                 temperature_humidity: temperature_humidity
               }
             }
-          }
+          },
           { new: true }
         );
         res.status(200).json(updatedInst);
