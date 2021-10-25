@@ -41,7 +41,7 @@ router.put("/:id", async (req, res) => {
         const inst = await Instance.find({name: req.params.id});
 
         const updatedInst = await Instance.findByIdAndUpdate(
-          inst._id,
+          inst.id,
           {
             $set: {
               last_updated: new Date(),
