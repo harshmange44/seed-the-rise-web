@@ -1,32 +1,6 @@
 const router = require("express").Router();
-// const firebase = require('firebase/app');
-// const initializeApp = require("firebase/app");
 const Instance = require("../models/Instance");
 const SensorData = require("../models/SensorData");
-
-// const firebaseConfig = {
-//   apiKey: "AIzaSyA8ZKf8npZI2y1EnHgMsbBv38Cow6y6amc",
-//   authDomain: "seed-the-rise.firebaseapp.com",
-//   projectId: "seed-the-rise",
-//   storageBucket: "seed-the-rise.appspot.com",
-//   messagingSenderId: "570317396666",
-//   appId: "1:570317396666:web:939cbe767f24a43ff1c083",
-//   measurementId: "G-D6J7KY78GD"
-// };
-// const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
-// const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
-
-// const serviceAccount = require('../seed-the-rise-firebase-adminsdk-d6o12-2b144b7636.json');
-
-// initializeApp({
-//   credential: cert(serviceAccount)
-// });
-
-// const firebaseApp = getFirestore();
-
-// Initialize Firebase
-// const firebaseApp = firebase.initializeApp(firebaseConfig);
-
 
 //INSERT SENSOR DATA (UPDATE NEW)
 router.post("/:id", async (req, res) => {
@@ -75,8 +49,8 @@ router.put("/:id", async (req, res) => {
                 soil: soil,
                 ldr: ldr,
                 temperature_humidity: temperature_humidity
-              },
-
+              }
+            },
               $push: {
                 sensor_data_array: {
                   air: air,
@@ -84,8 +58,8 @@ router.put("/:id", async (req, res) => {
                   ldr: ldr,
                   temperature_humidity: temperature_humidity
                 }
-              } 
-            },
+              },
+//             },
           },
           { new: true }
         );
