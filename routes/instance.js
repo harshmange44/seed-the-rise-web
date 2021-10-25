@@ -45,12 +45,7 @@ router.put("/:id", async (req, res) => {
           {
             $set: {
               last_updated: new Date(),
-              sensor_data: {
-                air: air,
-                soil: soil,
-                ldr: ldr,
-                temperature_humidity: temperature_humidity
-              }
+              sensor_data: req.body,
             }
           },
           { new: true }
