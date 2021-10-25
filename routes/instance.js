@@ -38,14 +38,18 @@ router.put("/:id", async (req, res) => {
         const soil = req.body.soil;
         const ldr = req.body.ldr;
         const temperature_humidity = req.body.temperature_humidity;
-        const inst = await Instance.find({name: req.params.id});
 
-        const updatedInst = await Instance.findByIdAndUpdate(
-          inst._id,
+        const updatedInst = await Instance.findOneAndUpdate(
+          {name: req.params.id},
           {
             $set: {
               last_updated: new Date(),
-              sensor_data: req.body,
+              sensor_data: {
+                air: air,
+                soil: soil,
+                ldr: ldr,
+                temperature_humidity: temperature_humidity
+              },
             }
           },
           { new: true }
