@@ -83,7 +83,7 @@ router.delete("/:id", async (req, res) => {
 //GET INSTANCES
 router.get("/", async (req, res) => {
   try {    
-    const inst = await Instance.find({name: 1});
+    const inst = await Instance.find({}, {name: 1});
     res.status(200).json(inst);
   } catch (err) {
     res.status(500).json(err);
