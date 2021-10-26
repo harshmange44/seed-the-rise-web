@@ -80,6 +80,16 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+//GET INSTANCES
+router.get("/", async (req, res) => {
+  try {    
+    const inst = await Instance.find({name: 1});
+    res.status(200).json(inst);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 //GET INSTANCE
 router.get("/:id", async (req, res) => {
   try {    
@@ -93,7 +103,7 @@ router.get("/:id", async (req, res) => {
 //GET LAST SENSOR DATA
 router.get("/sensordata/:id", async (req, res) => {
   try {
-    const sensor_data = await Instance.findOne({name: req.params.id}, {sensor_data: 1});
+    const sensor_data = await Instance.find({name: req.params.id}, {sensor_data: 1});
     res.status(200).json(sensor_data);
   } catch (err) {
     res.status(500).json(err);
@@ -103,7 +113,7 @@ router.get("/sensordata/:id", async (req, res) => {
 //GET SENSOR DATA ARRAY
 router.get("/pastsensordata/:id/", async (req, res) => {
   try {
-    const sensor_data_array = await Instance.findOne({name: req.params.id}, {sensor_data_array: 1});
+    const sensor_data_array = await Instance.find({name: req.params.id}, {sensor_data_array: 1});
     res.status(200).json(sensor_data_array);
   } catch (err) {
     res.status(500).json(err);
