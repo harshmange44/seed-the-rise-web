@@ -32,12 +32,12 @@ router.post("/:id", async (req, res) => {
 });
 
 //UPDATE INSTANCE
-router.put("/:id", async (req, res) => {
+router.put("/:id?", async (req, res) => {
       try {
-        const air = req.body.air;
-        const soil = req.body.soil;
-        const ldr = req.body.ldr;
-        const temperature_humidity = req.body.temperature_humidity;
+        const air = req.query.air;
+        const soil = req.query.soil;
+        const ldr = req.query.ldr;
+        const temperature_humidity = req.query.temperature_humidity;
 
         const updatedInst = await Instance.findOneAndUpdate(
           {name: req.params.id},
