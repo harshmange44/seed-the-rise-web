@@ -19,7 +19,10 @@ const InstanceSchema = new mongoose.Schema(
       soil: {
         type: Number,
       },
-      temperature_humidity: {
+      temperature: {
+        type: Number,
+      },
+      humidity: {
         type: Number,
       }
     },
@@ -33,7 +36,10 @@ const InstanceSchema = new mongoose.Schema(
       soil: {
         type: Number,
       },
-      temperature_humidity: {
+      temperature: {
+        type: Number,
+      },
+      humidity: {
         type: Number,
       }
     }]
