@@ -8,7 +8,8 @@ router.post("/:id", async (req, res) => {
   const air = req.body.air;
   const soil = req.body.soil;
   const ldr = req.body.ldr;
-  const temperature_humidity = req.body.temperature_humidity;
+  const temperature = req.body.temperature;
+  const humidity = req.body.humidity;
   
   const retrievedSensorData = {
     air: air,
@@ -37,7 +38,8 @@ router.put("/:id?", async (req, res) => {
         const air = req.query.air;
         const soil = req.query.soil;
         const ldr = req.query.ldr;
-        const temperature_humidity = req.query.temperature_humidity;
+        const temperature = req.body.temperature;
+        const humidity = req.body.humidity;
 
         const updatedInst = await Instance.findOneAndUpdate(
           {name: req.params.id},
@@ -48,7 +50,8 @@ router.put("/:id?", async (req, res) => {
                 air: air,
                 soil: soil,
                 ldr: ldr,
-                temperature_humidity: temperature_humidity
+                temperature: temperature,
+                humidity: humidity
               },
             },
             $push: {
@@ -56,8 +59,8 @@ router.put("/:id?", async (req, res) => {
                   air: air,
                   soil: soil,
                   ldr: ldr,
-                  temperature_humidity: temperature_humidity
-                }
+                  temperature: temperature,
+                  humidity: humidity                }
               } 
           },
           { new: true }
