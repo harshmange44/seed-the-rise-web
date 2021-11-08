@@ -38,8 +38,8 @@ router.put("/:id?", async (req, res) => {
         const air = req.query.air;
         const soil = req.query.soil;
         const ldr = req.query.ldr;
-        const temperature = req.body.temperature;
-        const humidity = req.body.humidity;
+        const temperature = req.query.temperature;
+        const humidity = req.query.humidity;
 
         const updatedInst = await Instance.findOneAndUpdate(
           {name: req.params.id},
