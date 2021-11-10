@@ -33,7 +33,7 @@ router.post("/:id", async (req, res) => {
 });
 
 //UPDATE INSTANCE
-router.put("/:id?", async (req, res) => {
+router.put("/:id", async (req, res) => {
       try {
         const air = req.body.air;
         const soil = req.body.soil;
@@ -65,7 +65,7 @@ router.put("/:id?", async (req, res) => {
           },
           { new: true }
         );
-        res.status(200).json(req);
+        res.status(200).json(updatedInst);
       } catch (err) {
         res.status(500).json(err);
       }
