@@ -38,11 +38,11 @@ router.put("/:id", async (req, res) => {
         
         jsonObj = JSON.parse(req.body);
         
-        const air = jsonObj.air;
-        const soil = jsonObj.soil;
-        const ldr = jsonObj.ldr;
-        const temperature = jsonObj.temperature;
-        const humidity = jsonObj.humidity;
+        const air = req.body.air;
+        const soil = req.body.soil;
+        const ldr = req.body.ldr;
+        const temperature = req.body.temperature;
+        const humidity = req.body.humidity;
 
         const updatedInst = await Instance.findOneAndUpdate(
           {name: req.params.id},
