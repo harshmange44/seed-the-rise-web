@@ -35,11 +35,14 @@ router.post("/:id", async (req, res) => {
 //UPDATE INSTANCE
 router.put("/:id", async (req, res) => {
       try {
-        const air = req.body.air;
-        const soil = req.body.soil;
-        const ldr = req.body.ldr;
-        const temperature = req.body.temperature;
-        const humidity = req.body.humidity;
+        
+        jsonObj = JSON.parse(req.body);
+        
+        const air = jsonObj.air;
+        const soil = jsonObj.soil;
+        const ldr = jsonObj.ldr;
+        const temperature = jsonObj.temperature;
+        const humidity = jsonObj.humidity;
 
         const updatedInst = await Instance.findOneAndUpdate(
           {name: req.params.id},
@@ -70,6 +73,45 @@ router.put("/:id", async (req, res) => {
         res.status(500).json(err);
       }
 
+});
+
+//UPDATE INSTANCE using Query
+router.put("/query/:id?", async (req, res) => {
+      try {
+        const air = req.query.air;
+        const soil = req.query.soil;
+        const ldr = req.query.ldr;
+        const temperature = req.query.temperature;
+        const humidity = req.query.humidity;
+
+        const updatedInst = await Instance.findOneAndUpdate(
+          {name: req.params.id},
+          {
+            $set: {
+              last_updated: new Date(),
+              sensor_data: {
+                air: air,
+                soil: soil,
+                ldr: ldr,
+                temperature: temperature,
+                humidity: humidity
+              },
+            },
+            $push: {
+                sensor_data_array: {
+                  air: air,
+                  soil: soil,
+                  ldr: ldr,
+                  temperature: temperature,
+                  humidity: humidity                }
+              } 
+          },
+          { new: true }
+        );
+        res.status(200).json(updatedInst);
+      } catch (err) {
+        res.status(500).json(err);
+      }
 });
 
 //DELETE INSTANCE
