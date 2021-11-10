@@ -65,7 +65,7 @@ router.put("/:id?", async (req, res) => {
           },
           { new: true }
         );
-        res.status(200).json(updatedInst);
+        res.status(200).json(req.body);
       } catch (err) {
         res.status(500).json(err);
       }
