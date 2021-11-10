@@ -33,7 +33,7 @@ router.post("/:id", async (req, res) => {
 });
 
 //UPDATE INSTANCE
-router.put("/:id?", async (req, res) => {
+router.put("/:id", async (req, res) => {
       try {
         const air = req.body.air;
         const soil = req.body.soil;
