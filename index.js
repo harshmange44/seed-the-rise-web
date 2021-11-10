@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 dotenv.config();
-app.use(express.json());
+//app.use(express.json());
 
 mongoose
   .connect(process.env.MONGO_URL, {
@@ -21,8 +21,8 @@ mongoose
 
 app.use(bodyParser.urlencoded(
     { extended:true }
-))
-
+));
+app.use(bodyParser.json());
 app.use("/api/instances", instanceRoute);
 
 app.listen(process.env.PORT || 5000, () => {
