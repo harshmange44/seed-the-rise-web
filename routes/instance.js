@@ -36,7 +36,7 @@ router.post("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
       try {
         
-        jsonObj = JSON.parse(req.body);
+//         jsonObj = JSON.parse(req.body);
         
         const air = req.body.air;
         const soil = req.body.soil;
